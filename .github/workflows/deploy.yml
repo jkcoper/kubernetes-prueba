@@ -13,6 +13,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: Install Knative CLI
+      run: |
+        curl -Lo kn.tar.gz https://github.com/knative/client/releases/download/v0.26.0/kn-linux-amd64.tar.gz
+        tar xvf kn.tar.gz
+        sudo mv kn-linux-amd64 /usr/local/bin/kn
+
     - name: Set up Kubeconfig
       env:
         KUBECONFIG_DATA: ${{ secrets.KUBECONFIG }}
